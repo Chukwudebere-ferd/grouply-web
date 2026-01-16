@@ -1,393 +1,628 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Grouply | Smarter WhatsApp Group Management</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#196ee6",
-                        "whatsapp-green": "#25D366",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#0f172a",
-                        "card-dark": "#1e293b",
-                    },
-                    fontFamily: {
-                        "display": ["Spline Sans", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                },
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <!-- SEO Headers -->
+    <title>Grouply | Smarter WhatsApp Group Management</title>
+    <meta
+      name="description"
+      content="Automate your WhatsApp groups with AI-powered moderation, anti-spam, and simple natural language commands. Professional management for communities, schools, and businesses."
+    />
+    <meta
+      name="keywords"
+      content="WhatsApp bot, group management, AI moderation, anti-spam, WhatsApp automation, Grouply"
+    />
+    <meta name="author" content="Grouply Inc." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://grouply.com/" />
+    <meta
+      property="og:title"
+      content="Grouply | Smarter WhatsApp Group Management"
+    />
+    <meta
+      property="og:description"
+      content="Professional WhatsApp group automation. Moderate better, engage faster, and keep your community safe."
+    />
+    <meta property="og:image" content="logo.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://grouply.com/" />
+    <meta
+      property="twitter:title"
+      content="Grouply | Smarter WhatsApp Group Management"
+    />
+    <meta
+      property="twitter:description"
+      content="Professional WhatsApp group automation. Moderate better, engage faster, and keep your community safe."
+    />
+    <meta property="twitter:image" content="logo.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css" />
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#196ee6",
+              "whatsapp-green": "#25D366",
+              "background-light": "#f6f7f8",
+              "background-dark": "#0f172a",
+              "card-dark": "#1e293b",
             },
-        }
+            fontFamily: {
+              display: ["Spline Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
     </script>
-<style>
-        body {
-            font-family: 'Spline Sans', sans-serif;
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
-<!-- Top Navigation Bar -->
-<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
-<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="size-8 bg-primary rounded flex items-center justify-center text-white">
-<span class="material-symbols-outlined">forum</span>
-</div>
-<h2 class="text-xl font-bold tracking-tight">Grouply</h2>
-</div>
-<nav class="hidden md:flex items-center gap-10">
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#how-it-works">How It Works</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#features">Features</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#use-cases">Use Cases</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Pricing</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="bg-whatsapp-green hover:bg-opacity-90 text-white px-5 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2">
-<span class="material-symbols-outlined text-lg">add</span>
-                    Add to WhatsApp
-                </button>
-</div>
-</div>
-</header>
-<!-- Hero Section -->
-<section class="relative overflow-hidden pt-20 pb-24 px-6">
-<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-<div class="flex flex-col gap-8">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 w-fit">
-<span class="material-symbols-outlined text-sm">bolt</span>
-<span class="text-xs font-bold uppercase tracking-wider">AI-Powered Moderation</span>
-</div>
-<h1 class="text-5xl lg:text-7xl font-black leading-tight tracking-tight">
-                    Smarter WhatsApp Group Management
-                </h1>
-<p class="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed">
-                    Automate your WhatsApp groups with natural language commands. Professional moderation, anti-spam, and scheduling in one powerful bot. No complex commands needed—just talk.
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display"
+  >
+    <!-- Top Navigation Bar -->
+    <header
+      class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <img src="logo.png" alt="Grouply Logo" class="h-8 w-auto" />
+          <h2 class="text-xl font-bold tracking-tight">Grouply</h2>
+        </div>
+        <nav class="hidden md:flex items-center gap-10">
+          <a
+            class="text-sm font-medium hover:text-primary transition-colors"
+            href="#how-it-works"
+            >How It Works</a
+          >
+          <a
+            class="text-sm font-medium hover:text-primary transition-colors"
+            href="#features"
+            >Features</a
+          >
+          <a
+            class="text-sm font-medium hover:text-primary transition-colors"
+            href="#use-cases"
+            >Use Cases</a
+          >
+         
+        </nav>
+        <div class="flex items-center gap-4">
+          <button
+            class="bg-whatsapp-green hover:bg-opacity-90 text-white px-5 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2"
+          >
+            <i class="fa-solid fa-plus text-lg"></i>
+            Add to WhatsApp
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden pt-20 pb-24 px-6">
+      <div
+        class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+      >
+        <div class="flex flex-col gap-8">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 w-fit"
+          >
+            <i class="fa-solid fa-bolt text-sm"></i>
+            <span class="text-xs font-bold uppercase tracking-wider"
+              >AI-Powered Moderation</span
+            >
+          </div>
+          <h1
+            class="text-5xl lg:text-7xl font-black leading-tight tracking-tight"
+          >
+            Smarter WhatsApp Group Management
+          </h1>
+          <p
+            class="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed"
+          >
+            Automate your WhatsApp groups with natural language commands.
+            Professional moderation, anti-spam, and scheduling in one powerful
+            bot. No complex commands needed—just talk.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <button
+              class="px-8 py-4 bg-whatsapp-green text-white rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-whatsapp-green/20 transition-all flex items-center gap-3"
+            >
+              Add Grouply to WhatsApp
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <button
+              class="px-8 py-4 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl font-bold text-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition-all"
+            >
+              See Features
+            </button>
+          </div>
+          <div class="flex items-center gap-4 text-sm text-slate-500">
+            <div class="flex -space-x-2">
+              <div
+                class="size-8 rounded-full border-2 border-background-dark bg-cover"
+                data-alt="User avatar 1"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCz3y09Hd2UbDfrmHki87gLyl3qppUbUnhKPFkJiAo7-HU0jIwEXBHUmR9g8IdFrCxygW3_bIkUsJ-aubiMqxS2JPrPxgq1GI2pIqmnBxXHcnFxZJoWjH101cw43wZx_FL7yGLJKlhF871PO9dOC92F-LoJa7qZADQNwt3wkdRi2MZAHkNJWLQRzqtFVHWMf7ZWIAwqxY7XXSdbFll05oLEUIhKZI1ibi73K3L4WAoVpAOc07EIHoV8euXZNDBmIVdaxQ2UguSGyfbg');
+                "
+              ></div>
+              <div
+                class="size-8 rounded-full border-2 border-background-dark bg-cover"
+                data-alt="User avatar 2"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARlDv0fKx9UU51u0kG5960OH9o0v4dS5g7pwXhenHaPZ5T4d8aS_4qE3SnJnMwTjBR-SN-jP0K7_QE0ZskjfNzqljx7Hst6gU26nfykxgEdhhkjPnNj0pFJ-Za2Fczk82MmzgltvKUDbJY1yuaeLGVmJHDULRwmzyWHB2EAKg1yE8-p8z8GSrKcnxuwr3ao3C1ww4TUtDo4_LDA1NG8oEhI62_apfXvUnx6bpY_Bco_9ye9tR-Qntv6jfc31k1c-Cj2hJx5Osdb8_j');
+                "
+              ></div>
+              <div
+                class="size-8 rounded-full border-2 border-background-dark bg-cover"
+                data-alt="User avatar 3"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDtadAZkY4o5MQFXWzqnRyNhn0WNroFOAD_4RcqgQMl8Ye4Obp5HdqItB98f26l252d3pZdaekNOIaIEqs89JqrRfeMrZYDGdydhGwbqkXeqe6MQXO0DAFkN4wCFN7VE63rNeP_vJsT4D0JaPapoFQYA_sp-1acv6ZwwwbaHwTncgKogx1f-t5PAgGsTP6QZsEJGvkVZ1eLlJ4-6GPJM3_jJjZlQ8QA5XGbkbPEXSQuOGzpJYi0rNRTnwQCg6AyWGeoj46aR4TbfBoU');
+                "
+              ></div>
+            </div>
+            <p>Trusted by 10,000+ group admins worldwide</p>
+          </div>
+        </div>
+        <div class="relative">
+          <div
+            class="rounded-2xl border border-slate-200 dark:border-slate-700 shadow-2xl bg-white dark:bg-slate-900 overflow-hidden"
+          >
+            <div
+              class="bg-slate-100 dark:bg-slate-800 p-4 border-b border-slate-200 dark:border-slate-700 flex items-center gap-3"
+            >
+              <div
+                class="size-10 rounded-full bg-white flex items-center justify-center p-1 overflow-hidden"
+              >
+                <img src="logo.png" alt="Grouply Bot" class="w-full h-full object-contain" />
+              </div>
+              <div>
+                <div class="font-bold">Grouply Bot</div>
+                <div class="text-xs text-whatsapp-green">Online</div>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col gap-4 min-h-[400px]">
+              <div
+                class="self-end bg-whatsapp-green/10 border border-whatsapp-green/20 p-3 rounded-lg rounded-tr-none max-w-[80%]"
+              >
+                <p class="text-sm">
+                  Hey Grouply, please ban anyone who sends links in this group
+                  for the next 24 hours.
                 </p>
-<div class="flex flex-wrap gap-4">
-<button class="px-8 py-4 bg-whatsapp-green text-white rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-whatsapp-green/20 transition-all flex items-center gap-3">
-                        Add Grouply to WhatsApp
-                        <span class="material-symbols-outlined">arrow_forward</span>
-</button>
-<button class="px-8 py-4 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl font-bold text-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">
-                        See Features
-                    </button>
-</div>
-<div class="flex items-center gap-4 text-sm text-slate-500">
-<div class="flex -space-x-2">
-<div class="size-8 rounded-full border-2 border-background-dark bg-cover" data-alt="User avatar 1" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCz3y09Hd2UbDfrmHki87gLyl3qppUbUnhKPFkJiAo7-HU0jIwEXBHUmR9g8IdFrCxygW3_bIkUsJ-aubiMqxS2JPrPxgq1GI2pIqmnBxXHcnFxZJoWjH101cw43wZx_FL7yGLJKlhF871PO9dOC92F-LoJa7qZADQNwt3wkdRi2MZAHkNJWLQRzqtFVHWMf7ZWIAwqxY7XXSdbFll05oLEUIhKZI1ibi73K3L4WAoVpAOc07EIHoV8euXZNDBmIVdaxQ2UguSGyfbg')"></div>
-<div class="size-8 rounded-full border-2 border-background-dark bg-cover" data-alt="User avatar 2" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARlDv0fKx9UU51u0kG5960OH9o0v4dS5g7pwXhenHaPZ5T4d8aS_4qE3SnJnMwTjBR-SN-jP0K7_QE0ZskjfNzqljx7Hst6gU26nfykxgEdhhkjPnNj0pFJ-Za2Fczk82MmzgltvKUDbJY1yuaeLGVmJHDULRwmzyWHB2EAKg1yE8-p8z8GSrKcnxuwr3ao3C1ww4TUtDo4_LDA1NG8oEhI62_apfXvUnx6bpY_Bco_9ye9tR-Qntv6jfc31k1c-Cj2hJx5Osdb8_j')"></div>
-<div class="size-8 rounded-full border-2 border-background-dark bg-cover" data-alt="User avatar 3" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDtadAZkY4o5MQFXWzqnRyNhn0WNroFOAD_4RcqgQMl8Ye4Obp5HdqItB98f26l252d3pZdaekNOIaIEqs89JqrRfeMrZYDGdydhGwbqkXeqe6MQXO0DAFkN4wCFN7VE63rNeP_vJsT4D0JaPapoFQYA_sp-1acv6ZwwwbaHwTncgKogx1f-t5PAgGsTP6QZsEJgvkVZ1eLlJ4-6GPJM3_jJjZlQ8QA5XGbkbPEXSQuOGzpJYi0rNRTnwQCg6AyWGeoj46aR4TbfBoU')"></div>
-</div>
-<p>Trusted by 10,000+ group admins worldwide</p>
-</div>
-</div>
-<div class="relative">
-<div class="rounded-2xl border border-slate-200 dark:border-slate-700 shadow-2xl bg-white dark:bg-slate-900 overflow-hidden">
-<div class="bg-slate-100 dark:bg-slate-800 p-4 border-b border-slate-200 dark:border-slate-700 flex items-center gap-3">
-<div class="size-10 rounded-full bg-primary flex items-center justify-center text-white">
-<span class="material-symbols-outlined">forum</span>
-</div>
-<div>
-<div class="font-bold">Grouply Bot</div>
-<div class="text-xs text-whatsapp-green">Online</div>
-</div>
-</div>
-<div class="p-6 flex flex-col gap-4 min-h-[400px]">
-<div class="self-end bg-whatsapp-green/10 border border-whatsapp-green/20 p-3 rounded-lg rounded-tr-none max-w-[80%]">
-<p class="text-sm">Hey Grouply, please ban anyone who sends links in this group for the next 24 hours.</p>
-</div>
-<div class="self-start bg-slate-100 dark:bg-slate-800 p-3 rounded-lg rounded-tl-none max-w-[80%]">
-<p class="text-sm">Understood! I will automatically remove any member who posts a link and delete the message. This rule is active until tomorrow 10:45 AM. 🛡️</p>
-</div>
-<div class="self-end bg-whatsapp-green/10 border border-whatsapp-green/20 p-3 rounded-lg rounded-tr-none max-w-[80%]">
-<p class="text-sm">Great, also schedule a welcome message for new members.</p>
-</div>
-<div class="self-start bg-slate-100 dark:bg-slate-800 p-3 rounded-lg rounded-tl-none max-w-[80%]">
-<p class="text-sm">Welcome message automation enabled. What should I say to them? ✨</p>
-</div>
-</div>
-</div>
-<div class="absolute -bottom-6 -right-6 size-32 bg-primary/20 blur-3xl -z-10 rounded-full"></div>
-<div class="absolute -top-6 -left-6 size-32 bg-whatsapp-green/20 blur-3xl -z-10 rounded-full"></div>
-</div>
-</div>
-</section>
-<!-- How It Works Section -->
-<section class="py-24 bg-slate-50 dark:bg-slate-900/50" id="how-it-works">
-<div class="max-w-7xl mx-auto px-6 text-center">
-<h2 class="text-3xl font-bold mb-16">How It Works</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-<div class="hidden md:block absolute top-12 left-1/4 right-1/4 h-[2px] bg-slate-200 dark:bg-slate-800"></div>
-<div class="relative flex flex-col items-center gap-6">
-<div class="size-24 rounded-full bg-white dark:bg-slate-800 border-4 border-primary shadow-xl flex items-center justify-center z-10">
-<span class="material-symbols-outlined text-4xl text-primary">person_add</span>
-</div>
-<div>
-<h3 class="text-xl font-bold mb-2">1. Add bot</h3>
-<p class="text-slate-500">Invite Grouply to your WhatsApp group to get started instantly.</p>
-</div>
-</div>
-<div class="relative flex flex-col items-center gap-6">
-<div class="size-24 rounded-full bg-white dark:bg-slate-800 border-4 border-primary shadow-xl flex items-center justify-center z-10">
-<span class="material-symbols-outlined text-4xl text-primary">shield_person</span>
-</div>
-<div>
-<h3 class="text-xl font-bold mb-2">2. Make admin</h3>
-<p class="text-slate-500">Grant admin permissions to enable automated moderation features.</p>
-</div>
-</div>
-<div class="relative flex flex-col items-center gap-6">
-<div class="size-24 rounded-full bg-white dark:bg-slate-800 border-4 border-primary shadow-xl flex items-center justify-center z-10">
-<span class="material-symbols-outlined text-4xl text-primary">chat_bubble</span>
-</div>
-<div>
-<h3 class="text-xl font-bold mb-2">3. Talk naturally</h3>
-<p class="text-slate-500">Control everything using simple text. No slash commands required.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Core Features Section -->
-<section class="py-24 px-6" id="features">
-<div class="max-w-7xl mx-auto">
-<div class="text-center mb-16">
-<h2 class="text-3xl font-bold mb-4">Core Features</h2>
-<p class="text-slate-500">Powerful tools designed for professional group administrators.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<!-- Feature Card 1 -->
-<div class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
-<span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">security</span>
-<h4 class="text-lg font-bold mb-2">Admin Detection</h4>
-<p class="text-sm text-slate-500 leading-relaxed">Automatically distinguishes between admins and members to prevent unauthorized bot control.</p>
-</div>
-<!-- Feature Card 2 -->
-<div class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
-<span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">link_off</span>
-<h4 class="text-lg font-bold mb-2">Auto Link Moderation</h4>
-<p class="text-sm text-slate-500 leading-relaxed">Detects and removes suspicious external links to keep your group safe from phishing and scams.</p>
-</div>
-<!-- Feature Card 3 -->
-<div class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
-<span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">block</span>
-<h4 class="text-lg font-bold mb-2">Anti-Spam</h4>
-<p class="text-sm text-slate-500 leading-relaxed">Advanced filters to detect repetitive messages and flood attacks in real-time.</p>
-</div>
-<!-- Feature Card 4 -->
-<div class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
-<span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">lock</span>
-<h4 class="text-lg font-bold mb-2">Group Lock</h4>
-<p class="text-sm text-slate-500 leading-relaxed">Instant lockdown of the group to prevent new messages or members during off-hours.</p>
-</div>
-<!-- Feature Card 5 -->
-<div class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
-<span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">group_add</span>
-<h4 class="text-lg font-bold mb-2">Member Management</h4>
-<p class="text-sm text-slate-500 leading-relaxed">Easily kick, ban, or warn users through conversational commands.</p>
-</div>
-<!-- Feature Card 6 -->
-<div class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
-<span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">sticky_note_2</span>
-<h4 class="text-lg font-bold mb-2">Anti-Sticker</h4>
-<p class="text-sm text-slate-500 leading-relaxed">Control the flow of stickers and media to keep discussions focused and professional.</p>
-</div>
-<!-- Feature Card 7 -->
-<div class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
-<span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">campaign</span>
-<h4 class="text-lg font-bold mb-2">Tag Everyone</h4>
-<p class="text-sm text-slate-500 leading-relaxed">Admins can alert the entire group for urgent announcements without manual tagging.</p>
-</div>
-<!-- Feature Card 8 -->
-<div class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
-<span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">event_repeat</span>
-<h4 class="text-lg font-bold mb-2">Schedules</h4>
-<p class="text-sm text-slate-500 leading-relaxed">Set recurring tasks, daily reminders, or scheduled group opening/closing times.</p>
-</div>
-<!-- Feature Card 9 -->
-<div class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group">
-<span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">psychology</span>
-<h4 class="text-lg font-bold mb-2">NLP Control</h4>
-<p class="text-sm text-slate-500 leading-relaxed">The bot understands intent. "Can you stop people from sending links?" is all you need to say.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Why Grouply Section -->
-<section class="py-24 px-6 bg-slate-900 text-white overflow-hidden relative">
-<div class="absolute right-0 top-0 w-1/3 h-full bg-primary/10 blur-[120px] rounded-full"></div>
-<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-<div>
-<h2 class="text-4xl lg:text-5xl font-bold mb-8 leading-tight">Built for speed, security, and simplicity.</h2>
-<p class="text-slate-400 text-lg leading-relaxed">
-                    Most bots require learning complicated syntax. Grouply is designed to feel like a helpful assistant that's always listening to your instructions.
+              </div>
+              <div
+                class="self-start bg-slate-100 dark:bg-slate-800 p-3 rounded-lg rounded-tl-none max-w-[80%]"
+              >
+                <p class="text-sm">
+                  Understood! I will automatically remove any member who posts a
+                  link and delete the message. This rule is active until
+                  tomorrow 10:45 AM. 🛡️
                 </p>
+              </div>
+              <div
+                class="self-end bg-whatsapp-green/10 border border-whatsapp-green/20 p-3 rounded-lg rounded-tr-none max-w-[80%]"
+              >
+                <p class="text-sm">
+                  Great, also schedule a welcome message for new members.
+                </p>
+              </div>
+              <div
+                class="self-start bg-slate-100 dark:bg-slate-800 p-3 rounded-lg rounded-tl-none max-w-[80%]"
+              >
+                <p class="text-sm">
+                  Welcome message automation enabled. What should I say to them?
+                  ✨
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="absolute -bottom-6 -right-6 size-32 bg-primary/20 blur-3xl -z-10 rounded-full"
+          ></div>
+          <div
+            class="absolute -top-6 -left-6 size-32 bg-whatsapp-green/20 blur-3xl -z-10 rounded-full"
+          ></div>
+        </div>
+      </div>
+    </section>
+    <!-- How It Works Section -->
+    <section class="py-24 bg-slate-50 dark:bg-slate-900/50" id="how-it-works">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-16">How It Works</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+          <div
+            class="hidden md:block absolute top-12 left-1/4 right-1/4 h-[2px] bg-slate-200 dark:bg-slate-800"
+          ></div>
+          <div class="relative flex flex-col items-center gap-6">
+            <div class="size-24 rounded-full bg-white dark:bg-slate-800 border-4 border-primary shadow-xl flex items-center justify-center z-10">
+<i class="fa-solid fa-user-plus text-4xl text-primary"></i>
 </div>
-<div class="space-y-8">
-<div class="flex items-start gap-4">
-<div class="size-12 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-primary">verified</span>
+            <div>
+              <h3 class="text-xl font-bold mb-2">1. Add bot</h3>
+              <p class="text-slate-500">
+                Invite Grouply to your WhatsApp group to get started instantly.
+              </p>
+            </div>
+          </div>
+          <div class="relative flex flex-col items-center gap-6">
+            <div
+            class="size-24 rounded-full bg-white dark:bg-slate-800 border-4 border-primary shadow-xl flex items-center justify-center z-10">
+<i class="fa-solid fa-user-plus text-4xl text-primary"></i>
 </div>
-<div>
-<h4 class="text-xl font-bold mb-2">24/7 Automation</h4>
-<p class="text-slate-400">Sleep soundly while Grouply monitors your groups around the clock.</p>
+            <div>
+              <h3 class="text-xl font-bold mb-2">2. Make admin</h3>
+              <p class="text-slate-500">
+                Grant admin permissions to enable automated moderation features.
+              </p>
+            </div>
+          </div>
+          <div class="relative flex flex-col items-center gap-6">
+            <div
+             class="size-24 rounded-full bg-white dark:bg-slate-800 border-4 border-primary shadow-xl flex items-center justify-center z-10">
+<i class="fa-solid fa-message text-4xl text-primary"></i>
 </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2">3. Talk naturally</h3>
+              <p class="text-slate-500">
+                Control everything using simple text. No slash commands
+                required.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Core Features Section -->
+    <section class="py-24 px-6" id="features">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold mb-4">Core Features</h2>
+          <p class="text-slate-500">
+            Powerful tools designed for professional group administrators.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Feature Card 1 -->
+          <div
+            class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group"
+          <i class="fa-solid fa-shield-halved text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform"></i>
+            <h4 class="text-lg font-bold mb-2">Admin Detection</h4>
+            <p class="text-sm text-slate-500 leading-relaxed">
+              Automatically distinguishes between admins and members to prevent
+              unauthorized bot control.
+            </p>
+          </div>
+          <!-- Feature Card 2 -->
+          <div
+            class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group"
+          >
+            <i class="fa-solid fa-link-slash text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform"></i>
+            <h4 class="text-lg font-bold mb-2">Auto Link Moderation</h4>
+            <p class="text-sm text-slate-500 leading-relaxed">
+              Detects and removes suspicious external links to keep your group
+              safe from phishing and scams.
+            </p>
+          </div>
+          <!-- Feature Card 3 -->
+          <div
+            class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group"
+          >
+            <i class="fa-solid fa-ban text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform"></i>
+            <h4 class="text-lg font-bold mb-2">Anti-Spam</h4>
+            <p class="text-sm text-slate-500 leading-relaxed">
+              Advanced filters to detect repetitive messages and flood attacks
+              in real-time.
+            </p>
+          </div>
+          <!-- Feature Card 4 -->
+          <div
+            class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group"
+          >
+            <i class="fa-solid fa-lock text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform"></i>
+            <h4 class="text-lg font-bold mb-2">Group Lock</h4>
+            <p class="text-sm text-slate-500 leading-relaxed">
+              Instant lockdown of the group to prevent new messages or members
+              during off-hours.
+            </p>
+          </div>
+          <!-- Feature Card 5 -->
+          <div
+            class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group"
+          >
+            <i class="fa-solid fa-users-gear text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform"></i>
+            <h4 class="text-lg font-bold mb-2">Member Management</h4>
+            <p class="text-sm text-slate-500 leading-relaxed">
+              Easily kick, ban, or warn users through conversational commands.
+            </p>
+          </div>
+          <!-- Feature Card 6 -->
+          <div
+            class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group"
+          >
+            <i class="fa-solid fa-note-sticky text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform"></i>
+            <h4 class="text-lg font-bold mb-2">Anti-Sticker</h4>
+            <p class="text-sm text-slate-500 leading-relaxed">
+              Control the flow of stickers and media to keep discussions focused
+              and professional.
+            </p>
+          </div>
+          <!-- Feature Card 7 -->
+          <div
+            class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group"
+          >
+            <i class="fa-solid fa-bullhorn text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform"></i>
+            <h4 class="text-lg font-bold mb-2">Tag Everyone</h4>
+            <p class="text-sm text-slate-500 leading-relaxed">
+              Admins can alert the entire group for urgent announcements without
+              manual tagging.
+            </p>
+          </div>
+          <!-- Feature Card 8 -->
+          <div
+            class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group"
+          >
+            <i class="fa-solid fa-calendar-check text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform"></i>
+            <h4 class="text-lg font-bold mb-2">Schedules</h4>
+            <p class="text-sm text-slate-500 leading-relaxed">
+              Set recurring tasks, daily reminders, or scheduled group
+              opening/closing times.
+            </p>
+          </div>
+          <!-- Feature Card 9 -->
+          <div
+            class="p-8 rounded-xl bg-white dark:bg-card-dark border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group"
+          >
+            <i class="fa-solid fa-brain text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform"></i>
+            <h4 class="text-lg font-bold mb-2">NLP Control</h4>
+            <p class="text-sm text-slate-500 leading-relaxed">
+              The bot understands intent. "Can you stop people from sending
+              links?" is all you need to say.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Why Grouply Section -->
+    <section
+      class="py-24 px-6 bg-slate-900 text-white overflow-hidden relative"
+    >
+      <div
+        class="absolute right-0 top-0 w-1/3 h-full bg-primary/10 blur-[120px] rounded-full"
+      ></div>
+      <div
+        class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+      >
+        <div>
+          <h2 class="text-4xl lg:text-5xl font-bold mb-8 leading-tight">
+            Built for speed, security, and simplicity.
+          </h2>
+          <p class="text-slate-400 text-lg leading-relaxed">
+            Most bots require learning complicated syntax. Grouply is designed
+            to feel like a helpful assistant that's always listening to your
+            instructions.
+          </p>
+        </div>
+        <div class="space-y-8">
+          <div class="flex items-start gap-4">
+            <div
+             class="size-12 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
+<i class="fa-solid fa-check-double text-primary"></i>
 </div>
-<div class="flex items-start gap-4">
-<div class="size-12 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-primary">spellcheck</span>
+            <div>
+              <h4 class="text-xl font-bold mb-2">24/7 Automation</h4>
+              <p class="text-slate-400">
+                Sleep soundly while Grouply monitors your groups around the
+                clock.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div
+             class="size-12 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
+<i class="fa-solid fa-keyboard text-primary"></i>
 </div>
-<div>
-<h4 class="text-xl font-bold mb-2">No Command Syntax</h4>
-<p class="text-slate-400">If you can text a friend, you can manage your group. No more manuals.</p>
+            <div>
+              <h4 class="text-xl font-bold mb-2">No Command Syntax</h4>
+              <p class="text-slate-400">
+                If you can text a friend, you can manage your group. No more
+                manuals.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div
+             class="size-12 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
+<i class="fa-solid fa-rocket text-primary"></i>
 </div>
-</div>
-<div class="flex items-start gap-4">
-<div class="size-12 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-primary">rocket_launch</span>
-</div>
-<div>
-<h4 class="text-xl font-bold mb-2">Fast &amp; Lightweight</h4>
-<p class="text-slate-400">Near-zero latency. Bot actions happen in milliseconds.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Use Cases Section -->
-<section class="py-24 px-6" id="use-cases">
-<div class="max-w-7xl mx-auto">
-<div class="text-center mb-16">
-<h2 class="text-3xl font-bold mb-4">Who it's for</h2>
-<p class="text-slate-500">Grouply fits seamlessly into any group dynamic.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-<div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
-<div class="size-12 bg-blue-500/10 text-blue-500 rounded-lg flex items-center justify-center mb-4">
-<span class="material-symbols-outlined">groups</span>
+            <div>
+              <h4 class="text-xl font-bold mb-2">Fast &amp; Lightweight</h4>
+              <p class="text-slate-400">
+                Near-zero latency. Bot actions happen in milliseconds.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Use Cases Section -->
+    <section class="py-24 px-6" id="use-cases">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold mb-4">Who it's for</h2>
+          <p class="text-slate-500">
+            Grouply fits seamlessly into any group dynamic.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700"
+          >
+            <div class="size-12 bg-blue-500/10 text-blue-500 rounded-lg flex items-center justify-center mb-4">
+<i class="fa-solid fa-users"></i>
 </div>
 <h4 class="font-bold mb-2 text-lg">Communities</h4>
-<p class="text-sm text-slate-500">Keep hobby groups and social clubs free from clutter and spam.</p>
+<p class="text-sm text-slate-500">
+Keep hobby groups and social clubs free from clutter and spam.
+</p>
 </div>
-<div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
-<div class="size-12 bg-orange-500/10 text-orange-500 rounded-lg flex items-center justify-center mb-4">
-<span class="material-symbols-outlined">school</span>
+          <div
+            class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700"
+          >
+            <div class="size-12 bg-orange-500/10 text-orange-500 rounded-lg flex items-center justify-center mb-4">
+<i class="fa-solid fa-graduation-cap"></i>
 </div>
 <h4 class="font-bold mb-2 text-lg">Church &amp; School</h4>
-<p class="text-sm text-slate-500">Manage announcements and student/member queries respectfully.</p>
+<p class="text-sm text-slate-500">
+Manage announcements and student/member queries respectfully.
+</p>
 </div>
-<div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
-<div class="size-12 bg-green-500/10 text-green-500 rounded-lg flex items-center justify-center mb-4">
-<span class="material-symbols-outlined">business_center</span>
+          <div
+            class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700"
+          >
+            <div class="size-12 bg-green-500/10 text-green-500 rounded-lg flex items-center justify-center mb-4">
+<i class="fa-solid fa-briefcase"></i>
 </div>
 <h4 class="font-bold mb-2 text-lg">Business</h4>
-<p class="text-sm text-slate-500">Professional interaction with clients and automated internal coordination.</p>
+<p class="text-sm text-slate-500">
+Professional interaction with clients and automated internal
+coordination.
+</p>
 </div>
-<div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
-<div class="size-12 bg-purple-500/10 text-purple-500 rounded-lg flex items-center justify-center mb-4">
-<span class="material-symbols-outlined">notifications_active</span>
+          <div
+            class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700"
+          >
+            <div class="size-12 bg-purple-500/10 text-purple-500 rounded-lg flex items-center justify-center mb-4">
+<i class="fa-solid fa-bell"></i>
 </div>
 <h4 class="font-bold mb-2 text-lg">Announcements</h4>
-<p class="text-sm text-slate-500">Restricted groups that require scheduled updates and tight control.</p>
+<p class="text-sm text-slate-500">
+Restricted groups that require scheduled updates and tight
+control.
+</p>
 </div>
+        </div>
+      </div>
+    </section>
+    <!-- Trust & Safety Banner -->
+    <section class="py-12 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div
+          class="bg-primary/5 border border-primary/20 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8"
+        >
+          <div
+           class="size-16 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+<i class="fa-solid fa-user-shield text-3xl text-primary"></i>
 </div>
-</div>
-</section>
-<!-- Trust & Safety Banner -->
-<section class="py-12 px-6">
-<div class="max-w-7xl mx-auto">
-<div class="bg-primary/5 border border-primary/20 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8">
-<div class="size-16 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-3xl text-primary">encrypted</span>
-</div>
-<div class="flex-1 text-center md:text-left">
-<h3 class="text-xl font-bold mb-2">Privacy &amp; Security First</h3>
-<p class="text-slate-500 text-sm">Grouply only processes commands sent by authorized admins. We do not store, read, or analyze private chat messages between members. Your data belongs to your group.</p>
-</div>
-<div class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
-<span class="material-symbols-outlined text-green-500 text-sm">lock</span>
-<span class="text-xs font-bold">End-to-End Conscious</span>
-</div>
-</div>
-</div>
-</section>
-<!-- Final CTA Section -->
-<section class="py-24 px-6 text-center">
-<div class="max-w-3xl mx-auto flex flex-col items-center gap-8">
-<h2 class="text-4xl md:text-5xl font-black">Ready to reclaim your group?</h2>
-<p class="text-lg text-slate-500 leading-relaxed">
-                Join thousands of admins who have upgraded to a more intelligent way of managing WhatsApp communities.
+          <div class="flex-1 text-center md:text-left">
+            <h3 class="text-xl font-bold mb-2">Privacy &amp; Security First</h3>
+            <p class="text-slate-500 text-sm">
+              Grouply only processes commands sent by authorized admins. We do
+              not store, read, or analyze private chat messages between members.
+              Your data belongs to your group.
             </p>
-<button class="px-10 py-5 bg-primary text-white rounded-xl font-bold text-xl hover:scale-105 transition-transform flex items-center gap-4">
+          </div>
+          <div
+            class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700"
+          >
+            <i class="fa-solid fa-lock text-green-500 text-sm"></i>
+            <span class="text-xs font-bold">End-to-End Conscious</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Final CTA Section -->
+    <section class="py-24 px-6 text-center">
+      <div class="max-w-3xl mx-auto flex flex-col items-center gap-8">
+        <h2 class="text-4xl md:text-5xl font-black">
+          Ready to reclaim your group?
+        </h2>
+        <p class="text-lg text-slate-500 leading-relaxed">
+          Join thousands of admins who have upgraded to a more intelligent way
+          of managing WhatsApp communities.
+        </p>
+        <button class="px-10 py-5 bg-primary text-white rounded-xl font-bold text-xl hover:scale-105 transition-transform flex items-center gap-4">
                 Get Grouply for Your Group
-                <span class="material-symbols-outlined">rocket</span>
+                <i class="fa-solid fa-rocket"></i>
 </button>
-<p class="text-sm text-slate-400">Setup takes less than 2 minutes. Cancel anytime.</p>
-</div>
-</section>
-<!-- Footer -->
-<footer class="py-16 px-6 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark">
-<div class="max-w-7xl mx-auto">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-<div class="col-span-1 md:col-span-2 space-y-6">
-<div class="flex items-center gap-3">
-<div class="size-8 bg-primary rounded flex items-center justify-center text-white">
-<span class="material-symbols-outlined">forum</span>
-</div>
+        <p class="text-sm text-slate-400">
+          Setup takes less than 2 minutes. Cancel anytime.
+        </p>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer
+      class="py-16 px-6 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          <div class="col-span-1 md:col-span-2 space-y-6">
+            <div class="flex items-center gap-3">
+<img src="logo.png" alt="Grouply Logo" class="h-8 w-auto">
 <h2 class="text-xl font-bold tracking-tight">Grouply</h2>
 </div>
-<p class="text-slate-500 max-w-sm">
-                        The professional standard for WhatsApp group automation. Moderate better, engage faster, and keep your community safe with AI-powered tools.
-                    </p>
-<div class="flex gap-4">
+            <p class="text-slate-500 max-w-sm">
+              The professional standard for WhatsApp group automation. Moderate
+              better, engage faster, and keep your community safe with
+              AI-powered tools.
+            </p>
+            <div class="flex gap-4">
+              <div class="flex gap-4">
 <a class="size-10 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
-<span class="material-symbols-outlined text-xl">share</span>
+<i class="fa-solid fa-share-nodes text-xl"></i>
 </a>
 <a class="size-10 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
-<span class="material-symbols-outlined text-xl">public</span>
+<i class="fa-solid fa-globe text-xl"></i>
 </a>
 </div>
-</div>
-<div>
-<h5 class="font-bold mb-6">Product</h5>
-<ul class="space-y-4 text-sm text-slate-500">
-<li><a class="hover:text-primary" href="#">Features</a></li>
-<li><a class="hover:text-primary" href="#">Pricing</a></li>
-<li><a class="hover:text-primary" href="#">Roadmap</a></li>
-<li><a class="hover:text-primary" href="#">API Docs</a></li>
-</ul>
-</div>
-<div>
-<h5 class="font-bold mb-6">Support</h5>
-<ul class="space-y-4 text-sm text-slate-500">
-<li><a class="hover:text-primary" href="#">Help Center</a></li>
-<li><a class="hover:text-primary" href="#">Privacy Policy</a></li>
-<li><a class="hover:text-primary" href="#">Terms of Service</a></li>
-<li><a class="hover:text-primary" href="#">Contact Us</a></li>
-</ul>
-</div>
-</div>
-<div class="pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
-<p>© 2024 Grouply Inc. All rights reserved.</p>
-<p class="bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded">Disclaimer: Grouply is NOT affiliated with, authorized, or endorsed by WhatsApp Inc. or Meta Platforms, Inc.</p>
-</div>
-</div>
-</footer>
-</body></html>
+            </div>
+          </div>
+          <div>
+            <h5 class="font-bold mb-6">Product</h5>
+            <ul class="space-y-4 text-sm text-slate-500">
+              <li><a class="hover:text-primary" href="#features">Features</a></li>
+            </ul>
+          </div>
+          
+        </div>
+        <div
+          class="pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400"
+        >
+          <p>© 2026 Grouply Inc. All rights reserved.</p>
+          <p class="bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded">
+            Disclaimer: Grouply is NOT affiliated with, authorized, or endorsed
+            by WhatsApp Inc. or Meta Platforms, Inc.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
